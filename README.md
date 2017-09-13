@@ -29,3 +29,4 @@ dependencies {
 ```
 
 ## Using the wrapper
+* Create a new APIWrapper Object by passing you 3Scale key
