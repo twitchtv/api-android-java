@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/igdb/api-android-java.svg?branch=master)](https://travis-ci.org/igdb/api-android-java)
 
 # api-android-java
-A Android wrapper for the IGDB.com Free Video Game Database API.
+An Android wrapper for the IGDB.com Free Video Game Database API.
 
 ## About IGDB
 One of the principles behind IGDB.com is accessibility of data. We wish to share the data with anyone who wants to build cool videogame oriented websites, apps and services. This means that the information you contribute to IGDB.com can be used by other projects as well.
@@ -223,7 +223,7 @@ args.put(APIWrapper.Operator.ORDER,“name:desc”);
 wrapper.search(APIWrapper.Endpoint.COMPANIES, args, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
-        	// JSONArray containing 5 Zelda games
+        	// JSONArray containing five companies with rockstar in their name
         }
 
         @Override
