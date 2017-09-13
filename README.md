@@ -131,7 +131,7 @@ The IGDB API documentation provides [details on search parameters](https://igdb.
 
 
 ## More examples
-```Android
+```java
 
 APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
 
