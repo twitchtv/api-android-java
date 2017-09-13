@@ -14,7 +14,8 @@ More info here:
 
 # Installation and setup
 
-```Step 1. Add this in your root build.gradle at the end of the repositories:
+1. Step 1. Add this in your root build.gradle at the end of the repositories:
+```java
 allprojects {
 	repositories {
 	...
@@ -22,7 +23,8 @@ allprojects {
 	}
 }
 ```
-```Step 2. Add the dependency 
+2. Step 2. Add the dependency
+``` java
 dependencies {
 	compile 'com.github.igdb:api-android-java:master-SNAPSHOT'
 }
