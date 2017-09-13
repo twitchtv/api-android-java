@@ -37,7 +37,7 @@ public class APIWrapper {
     }
 
     public enum Endpoint{
-        CHARACTERS, COLLECTIONS, COMPANIES, CREDITS, FEED, FRANCHISES, GAME_ENGINES, GAME_MODES, GAMES,
+        CHARACTERS, COLLECTIONS, COMPANIES, CREDITS, FEEDS, FRANCHISES, GAME_ENGINES, GAME_MODES, GAMES,
         GENRES, KEYWORDS, PAGES, PEOPLE, PLATFORMS, PLAYER_PERSPECTIVES, PULSE_GROUPS,
         PULSE_SOURCES, PULSES, RELEASE_DATES, REVIEWS, THEMES, TITLES
     }
@@ -332,8 +332,8 @@ public class APIWrapper {
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void feed(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.FEED, args), new onSuccessCallback() {
+    public void feeds(Map<Operator, String> args, final onSuccessCallback callback){
+        getJSONArray(queryBuilder(Endpoint.FEEDS, args), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
