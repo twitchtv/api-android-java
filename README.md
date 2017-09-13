@@ -16,16 +16,16 @@ More info here:
 
 ```Step 1. Add this in your root build.gradle at the end of the repositories:
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+	...
+	maven { url 'https://jitpack.io' }
 	}
+}
 ```
 ```Step 2. Add the dependency 
 dependencies {
-		compile 'com.github.igdb:api-android-java:master-SNAPSHOT'
-	}
+	compile 'com.github.igdb:api-android-java:master-SNAPSHOT'
+}
 ```
 
-# Using the wrapper
+## Using the wrapper
