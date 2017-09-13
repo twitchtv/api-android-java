@@ -34,7 +34,7 @@ public class APIWrapperTest {
 
     public void setUp(){
         context = InstrumentationRegistry.getContext();
-        wrapper = new APIWrapper(context, "345e9b3eb0f27cfa6b0ba2aa33e4726f");
+        wrapper = new APIWrapper(context, "YOUR_API_KEY");
     }
 
     @Test
