@@ -2,8 +2,10 @@ package com.igdb.api_android_java.model;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,7 +31,7 @@ public class APIWrapper {
     private static String API_KEY = "";
     private static String YOUTUBE_KEY = "";
 
-    private APIWrapper(Context context, String userKey){
+    public APIWrapper(Context context, String userKey){
         this.requestQueue = Volley.newRequestQueue(context);
         API_KEY = userKey;
     }
@@ -76,6 +78,14 @@ public class APIWrapper {
             }
         };
         requestQueue.add(request);
+
+
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
     }
 
     /**
@@ -150,7 +160,7 @@ public class APIWrapper {
 //            query += scroll;
 //        }
 
-        query += ids + search;
+        query += "/" + ids + search;
 
         if (!fields.isEmpty() && !search.isEmpty()){
             query += "&" + fields;
@@ -160,6 +170,8 @@ public class APIWrapper {
 
         query += filter + expand + order + limit + offset + scroll;
 
+        Log.d("Query", query);
+
         return query;
     }
 
@@ -168,9 +180,7 @@ public class APIWrapper {
      *
      *
      * @param endpoint  Apply for which Endpoint to search in.
-     *
      * @param args      Args are the arguments, Ex: search query, fields, order etc.
-     *
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * **/
@@ -178,6 +188,7 @@ public class APIWrapper {
         getJSONArray(queryBuilder(endpoint, args), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
+
                 callback.onSuccess(result);
             }
 
@@ -216,7 +227,7 @@ public class APIWrapper {
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void pulse(Map<Operator, String> args, final onSuccessCallback callback){
+    public void pulses(Map<Operator, String> args, final onSuccessCallback callback){
         getJSONArray(queryBuilder(Endpoint.PULSES, args), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
