@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/captainawesome/Documents/GitHub/api-android-java/api-android-wrapper/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/captainawesome/.android/build-cache/869d9c068256c3b2f649262a374ecab2e8a0b016/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/captainawesome/Documents/GitHub/api-android-java/api-android-wrapper/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/captainawesome/.android/build-cache/869d9c068256c3b2f649262a374ecab2e8a0b016/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/captainawesome/Documents/GitHub/api-android-java/api-android-wrapper/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/captainawesome/.android/build-cache/869d9c068256c3b2f649262a374ecab2e8a0b016/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/captainawesome/Documents/GitHub/api-android-java/api-android-wrapper/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/captainawesome/.android/build-cache/869d9c068256c3b2f649262a374ecab2e8a0b016/output/res/drawable-v21/abc_btn_colored_material.xml"
+    }
+]

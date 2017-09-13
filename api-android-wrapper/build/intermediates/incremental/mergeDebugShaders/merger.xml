@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/captainawesome/Documents/GitHub/api-android-java/api-android-wrapper/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/captainawesome/Documents/GitHub/api-android-java/api-android-wrapper/src/debug/shaders"/></dataSet></merger>
