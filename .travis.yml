@@ -30,6 +30,6 @@ cache:
     - sys-img-armeabi-v7a-android-22
 
 script:
-    bash gradlew test APIWrapperTest
+    ./gradlew APIWrapperTest
 
 
