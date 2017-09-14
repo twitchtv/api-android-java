@@ -29,6 +29,6 @@ cache:
     - sys-img-armeabi-v7a-android-22
 
 script:
-    ./gradlew /app/src/androidTest/java/com/igdb/api_android_java/testAPIWrapperTest
+    ./gradlew WrapperTests
 
 
