@@ -31,9 +31,10 @@ public class APIWrapper {
     private static String API_KEY = "";
     private static String YOUTUBE_KEY = "";
 
-    public APIWrapper(Context context, String userKey){
+    public APIWrapper(Context context, String API_KEY){
         this.requestQueue = Volley.newRequestQueue(context);
-        API_KEY = userKey;
+        this.API_KEY = API_KEY;
+        Log.d("KEY", "key: " + API_KEY);
     }
 
     public enum Endpoint{
@@ -128,37 +129,7 @@ public class APIWrapper {
             }
         }
 
-        query = endpoint.toString().toLowerCase(); // can remove if statements, they are always empty
-
-//        if (!ids.isEmpty()){
-//            query += ids;
-//        }
-//        if (!search.isEmpty()){
-//            query += search;
-//        }
-//        if (!fields.isEmpty() && !search.isEmpty()){
-//            query += "&" + fields;
-//        }else if (!fields.isEmpty()){
-//            query += "?" + fields;
-//        }
-//        if (!filter.isEmpty()){
-//            query += filter;
-//        }
-//        if (!expand.isEmpty()){
-//            query += expand;
-//        }
-//        if (!order.isEmpty()){
-//            query += order;
-//        }
-//        if (!limit.isEmpty()){
-//            query += limit;
-//        }
-//        if (!offset.isEmpty()){
-//            query += offset:
-//        }
-//        if (!scroll.isEmpty()){
-//            query += scroll;
-//        }
+        query = endpoint.toString().toLowerCase();
 
         query += "/" + ids + search;
 

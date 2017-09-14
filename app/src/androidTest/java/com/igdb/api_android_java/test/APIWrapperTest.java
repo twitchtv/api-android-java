@@ -12,15 +12,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
-import org.xml.sax.ContentHandler;
 
+import java.lang.reflect.Field;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.is;
 
@@ -34,7 +33,8 @@ public class APIWrapperTest {
 
     public void setUp(){
         context = InstrumentationRegistry.getContext();
-        wrapper = new APIWrapper(context, "YOUR_API_KEY");
+        String key = System.getProperty("API_KEY");
+        wrapper = new APIWrapper(context, key);
     }
 
     @Test
