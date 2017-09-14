@@ -4,3 +4,4 @@
 .gradle/3.3/taskArtifacts/fileSnapshots.bin
 .gradle/3.3/taskArtifacts/fileHashes.bin
 *.rawproto
+local.properties
