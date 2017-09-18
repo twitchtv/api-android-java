@@ -33,6 +33,7 @@ public class APIWrapperTest {
 
     public void setUp(){
         context = InstrumentationRegistry.getContext();
+        System.setProperty("API_KEY", "345e9b3eb0f27cfa6b0ba2aa33e4726f");
         String key = System.getProperty("API_KEY");
         wrapper = new APIWrapper(context, key);
     }

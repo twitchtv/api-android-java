@@ -34,7 +34,6 @@ public class APIWrapper {
     public APIWrapper(Context context, String API_KEY){
         this.requestQueue = Volley.newRequestQueue(context);
         this.API_KEY = API_KEY;
-        Log.d("KEY", "key: " + API_KEY);
     }
 
     public enum Endpoint{
@@ -124,7 +123,7 @@ public class APIWrapper {
                     break;
                 case SCROLL: scroll = "&scroll=" + args.get(Operator.SCROLL).replaceAll(" ", "");
                     break;
-                case FILTER: filter = args.get(Operator.FILTER).replaceAll(" ", "");
+                case FILTER: filter = "&filter" + args.get(Operator.FILTER).replaceAll(" ", "");
                     break;
             }
         }
@@ -137,6 +136,8 @@ public class APIWrapper {
             query += "&" + fields;
         }else if (!fields.isEmpty()){
             query += "?" + fields;
+        }else{
+            query += "?fields=*";
         }
 
         query += filter + expand + order + limit + offset + scroll;
