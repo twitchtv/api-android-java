@@ -123,7 +123,7 @@ public class APIWrapper {
                     break;
                 case SCROLL: scroll = "&scroll=" + args.get(Operator.SCROLL).replaceAll(" ", "");
                     break;
-                case FILTER: filter = "&filter" + args.get(Operator.FILTER).replaceAll(" ", "");
+                case FILTER: filter += "&filter" + args.get(Operator.FILTER).replaceAll(" ", "");
                     break;
             }
         }
