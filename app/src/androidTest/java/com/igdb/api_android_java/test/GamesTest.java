@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,11 +43,11 @@ public class GamesTest {
     @Test
     public void testSingleGames() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1942");
+        Parameters parameters = new Parameters()
+                .addIds("1942");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.games(args, new onSuccessCallback() {
+        wrapper.games(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -72,11 +73,11 @@ public class GamesTest {
     @Test
     public void testMultipleGames() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "27193,23212,1942");
+        Parameters parameters = new Parameters()
+                .addIds("27193,23212,1942");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.games(args, new onSuccessCallback() {
+        wrapper.games(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -107,12 +108,12 @@ public class GamesTest {
     @Test
     public void testOrder() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.FIELDS, "name");
-        args.put(APIWrapper.Operator.ORDER, "popularity:desc");
+        Parameters parameters = new Parameters()
+                .addFields("name")
+                .addOrder("popularity:desc");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.games(args, new onSuccessCallback() {
+        wrapper.games(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -139,12 +140,12 @@ public class GamesTest {
     @Test
     public void testSingleField() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "42");
-        args.put(APIWrapper.Operator.FIELDS, "games");
+        Parameters parameters = new Parameters()
+                .addIds("42")
+                .addFields("games");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.games(args, new onSuccessCallback() {
+        wrapper.games(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -171,12 +172,12 @@ public class GamesTest {
     @Test
     public void testMultipleFields() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "42");
-        args.put(APIWrapper.Operator.FIELDS, "games,name");
+        Parameters parameters = new Parameters()
+                .addIds("42")
+                .addFields("games, name");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.games(args, new onSuccessCallback() {
+        wrapper.games(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -204,12 +205,12 @@ public class GamesTest {
     @Test
     public void testGameSearchMultiAndSingle() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.SEARCH, "battlefield 1");
-        args.put(APIWrapper.Operator.FIELDS, "name");
+        Parameters parameters = new Parameters()
+                .addSearch("battlefield 1")
+                .addFields("name");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.search(APIWrapper.Endpoint.GAMES, args, new onSuccessCallback() {
+        wrapper.search(APIWrapper.Endpoint.GAMES, parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

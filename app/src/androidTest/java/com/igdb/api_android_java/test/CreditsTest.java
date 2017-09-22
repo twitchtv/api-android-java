@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class CreditsTest {
     @Test
     public void testSingleCredits() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1073917668");
+        Parameters parameters = new Parameters()
+                .addIds("1073917668");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.credits(args, new onSuccessCallback() {
+        wrapper.credits(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class CreditsTest {
     @Test
     public void testMultipleCredits() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1073917668,1073917629,1073917617");
+        Parameters parameters = new Parameters()
+                .addIds("1073917668,1073917629,1073917617");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.credits(args, new onSuccessCallback() {
+        wrapper.credits(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class CollectionsTest {
     @Test
     public void testSingleCollection() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1194");
+        Parameters parameters = new Parameters()
+                .addIds("1194");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.collections(args, new onSuccessCallback() {
+        wrapper.collections(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class CollectionsTest {
     @Test
     public void textMultipleCollection() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1198,1199,1200");
+        Parameters parameters = new Parameters()
+                .addIds("1198,1199,1200");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.characters(args, new onSuccessCallback() {
+        wrapper.characters(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

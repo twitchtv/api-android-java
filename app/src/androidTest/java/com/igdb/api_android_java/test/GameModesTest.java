@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class GameModesTest {
     @Test
     public void testSingleGameModes() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1");
+        Parameters parameters = new Parameters()
+                .addIds("1");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.gameModes(args, new onSuccessCallback() {
+        wrapper.gameModes(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class GameModesTest {
     @Test
     public void testMultipleGameModes() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "2,3,5");
+        Parameters parameters = new Parameters()
+                .addIds("2,3,5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.gameModes(args, new onSuccessCallback() {
+        wrapper.gameModes(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

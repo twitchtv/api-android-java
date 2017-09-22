@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class FranchisesTest {
     @Test
     public void testSingleFranchises() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1040");
+        Parameters parameters = new Parameters()
+                .addIds("1040");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.franchises(args, new onSuccessCallback() {
+        wrapper.franchises(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class FranchisesTest {
     @Test
     public void testMultipleFranchises() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1043,1,2");
+        Parameters parameters = new Parameters()
+                .addIds("1043,1,2");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.franchises(args, new onSuccessCallback() {
+        wrapper.franchises(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

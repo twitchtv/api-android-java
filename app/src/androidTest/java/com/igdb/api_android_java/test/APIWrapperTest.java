@@ -7,6 +7,7 @@ import android.util.Log;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +34,6 @@ public class APIWrapperTest {
 
     public void setUp(){
         context = InstrumentationRegistry.getContext();
-        System.setProperty("API_KEY", "345e9b3eb0f27cfa6b0ba2aa33e4726f");
         String key = System.getProperty("API_KEY");
         wrapper = new APIWrapper(context, key);
     }
@@ -41,12 +41,12 @@ public class APIWrapperTest {
     @Test
     public void search() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.SEARCH, "mass effect");
-        args.put(APIWrapper.Operator.FIELDS,"*");
+        Parameters parameters = new Parameters()
+                .addSearch("mass effect")
+                .addFields("*");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.search(APIWrapper.Endpoint.GAMES, args, new onSuccessCallback() {
+        wrapper.search(APIWrapper.Endpoint.GAMES, parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -75,11 +75,12 @@ public class APIWrapperTest {
     @Test
     public void games() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "12356");
+        Parameters parameters = new Parameters()
+                .addIds("12356");
+
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.games(args, new onSuccessCallback() {
+        wrapper.games(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -106,11 +107,11 @@ public class APIWrapperTest {
     @Test
     public void pulse() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "12342");
+        Parameters parameters = new Parameters()
+                .addIds("12342");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulses(args, new onSuccessCallback() {
+        wrapper.pulses(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -121,13 +122,14 @@ public class APIWrapperTest {
                     assertThat(s, is("A First Look Inside the Sailor Moon Museum Exhibit"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail();
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -137,11 +139,11 @@ public class APIWrapperTest {
     @Test
     public void characters() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "6");
+        Parameters parameters = new Parameters()
+        .addIds("6");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.characters(args, new onSuccessCallback() {
+        wrapper.characters(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -152,13 +154,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Commander Shepard (female)"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -168,11 +171,11 @@ public class APIWrapperTest {
     @Test
     public void collections() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "6");
+        Parameters parameters = new Parameters()
+                .addIds("6");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.collections(args, new onSuccessCallback() {
+        wrapper.collections(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -183,13 +186,14 @@ public class APIWrapperTest {
                     assertThat(s, is("The Elder Scrolls"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -199,11 +203,11 @@ public class APIWrapperTest {
     @Test
     public void companies() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "6");
+        Parameters parameters = new Parameters()
+                .addIds("6");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.companies(args, new onSuccessCallback() {
+        wrapper.companies(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -214,13 +218,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Lionhead Studios"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -230,11 +235,11 @@ public class APIWrapperTest {
     @Test
     public void franchises() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "6");
+        Parameters parameters = new Parameters()
+                .addIds("6");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.franchises(args, new onSuccessCallback() {
+        wrapper.franchises(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -245,13 +250,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Warhammer 40,000"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -261,11 +267,11 @@ public class APIWrapperTest {
     @Test
     public void feeds() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "4011");
+        Parameters parameters = new Parameters()
+                .addIds("4011");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.feeds(args, new onSuccessCallback() {
+        wrapper.feeds(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -276,13 +282,14 @@ public class APIWrapperTest {
                     assertThat(s, is("24221"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -292,11 +299,11 @@ public class APIWrapperTest {
     @Test
     public void pages() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "6");
+        Parameters parameters = new Parameters()
+                .addIds("6");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pages(args, new onSuccessCallback() {
+        wrapper.pages(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -307,13 +314,14 @@ public class APIWrapperTest {
                     assertThat(s, is("theRadBrad"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -323,11 +331,11 @@ public class APIWrapperTest {
     @Test
     public void gameEngines() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "6");
+        Parameters parameters = new Parameters()
+                .addIds("6");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.gameEngines(args, new onSuccessCallback() {
+        wrapper.gameEngines(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -338,13 +346,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Unreal Engine"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -353,11 +362,11 @@ public class APIWrapperTest {
     @Test
     public void gameModes() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "5");
+        Parameters parameters = new Parameters()
+                .addIds("5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.gameModes(args, new onSuccessCallback() {
+        wrapper.gameModes(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -368,13 +377,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Massively Multiplayer Online (MMO)"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -384,11 +394,11 @@ public class APIWrapperTest {
     @Test
     public void genres() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "5");
+        Parameters parameters = new Parameters()
+                .addIds("5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.genres(args, new onSuccessCallback() {
+        wrapper.genres(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -399,13 +409,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Shooter"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -415,11 +426,11 @@ public class APIWrapperTest {
     @Test
     public void keywords() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "5");
+        Parameters parameters = new Parameters()
+                .addIds("5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.keywords(args, new onSuccessCallback() {
+        wrapper.keywords(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -430,13 +441,14 @@ public class APIWrapperTest {
                     assertThat(s, is("zombies"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -446,11 +458,11 @@ public class APIWrapperTest {
     @Test
     public void people() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "5");
+        Parameters parameters = new Parameters()
+                .addIds("5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.people(args, new onSuccessCallback() {
+        wrapper.people(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -461,13 +473,14 @@ public class APIWrapperTest {
                     assertThat(s, is("David Falkner"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -477,11 +490,11 @@ public class APIWrapperTest {
     @Test
     public void platforms() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "5");
+        Parameters parameters = new Parameters()
+                .addIds("5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.platforms(args, new onSuccessCallback() {
+        wrapper.platforms(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -492,13 +505,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Wii"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail(e.getMessage());
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -508,11 +522,11 @@ public class APIWrapperTest {
     @Test
     public void playerPerspectives() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "5");
+        Parameters parameters = new Parameters()
+                .addIds("5");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.playerPerspectives(args, new onSuccessCallback() {
+        wrapper.playerPerspectives(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -523,13 +537,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Text"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -539,11 +554,11 @@ public class APIWrapperTest {
     @Test
     public void releaseDates() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "4");
+        Parameters parameters = new Parameters()
+                .addIds("4");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -554,13 +569,14 @@ public class APIWrapperTest {
                     assertThat(s, is("2008-Oct-20"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -569,11 +585,11 @@ public class APIWrapperTest {
     @Test
     public void pulseGroups() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1254");
+        Parameters parameters = new Parameters()
+                .addIds("1254");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulseGroups(args, new onSuccessCallback() {
+        wrapper.pulseGroups(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -584,13 +600,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Marvel vs. Capcom: Infinite"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -599,11 +616,11 @@ public class APIWrapperTest {
     @Test
     public void pulseSources() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1");
+        Parameters parameters = new Parameters()
+                .addIds("1");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulseSources(args, new onSuccessCallback() {
+        wrapper.pulseSources(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -614,13 +631,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Kotaku"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -630,11 +648,11 @@ public class APIWrapperTest {
     @Test
     public void themes() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "42");
+        Parameters parameters = new Parameters()
+                .addIds("42");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.themes(args, new onSuccessCallback() {
+        wrapper.themes(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -645,13 +663,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Erotic"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -660,11 +679,11 @@ public class APIWrapperTest {
     @Test
     public void reviews() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "42");
+        Parameters parameters = new Parameters()
+                .addIds("42");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.reviews(args, new onSuccessCallback() {
+        wrapper.reviews(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -675,13 +694,14 @@ public class APIWrapperTest {
                     assertThat(s, is("This is a game"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -691,11 +711,11 @@ public class APIWrapperTest {
     @Test
     public void titles() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "42");
+        Parameters parameters = new Parameters()
+                .addIds("42");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.titles(args, new onSuccessCallback() {
+        wrapper.titles(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -706,13 +726,14 @@ public class APIWrapperTest {
                     assertThat(s, is("Assistant External Resources Producer"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);
@@ -722,11 +743,11 @@ public class APIWrapperTest {
     @Test
     public void credits() throws Exception {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1073987150");
+        Parameters parameters = new Parameters()
+                .addIds("1073987150");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.credits(args, new onSuccessCallback() {
+        wrapper.credits(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 JSONObject jo;
@@ -737,13 +758,14 @@ public class APIWrapperTest {
                     assertThat(s, is("493"));
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    fail();
                 }
 
             }
 
             @Override
             public void onError(VolleyError error) {
-
+                fail(error.getMessage());
             }
         });
         lock.await(20000, TimeUnit.MILLISECONDS);

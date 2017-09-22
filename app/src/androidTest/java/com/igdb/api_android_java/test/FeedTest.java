@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class FeedTest {
     @Test
     public void testSingleFeed() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "129989");
+        Parameters parameters = new Parameters()
+                .addIds("129989");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.feeds(args, new onSuccessCallback() {
+        wrapper.feeds(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class FeedTest {
     @Test
     public void testMultipleFeed() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "129993,129992,129985");
+        Parameters parameters = new Parameters()
+                .addIds("129993,129992,129985");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.feeds(args, new onSuccessCallback() {
+        wrapper.feeds(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

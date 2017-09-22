@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class ReviewTest {
     @Test
     public void testSingleReview() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "7");
+        Parameters parameters = new Parameters()
+                .addIds("7");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.reviews(args, new onSuccessCallback() {
+        wrapper.reviews(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class ReviewTest {
     @Test
     public void testMultipleReviews() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "20,80,34");
+        Parameters parameters = new Parameters()
+                .addIds("20,80,34");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.reviews(args, new onSuccessCallback() {
+        wrapper.reviews(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

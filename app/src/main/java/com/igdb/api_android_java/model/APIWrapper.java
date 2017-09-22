@@ -41,9 +41,6 @@ public class APIWrapper {
         GENRES, KEYWORDS, PAGES, PEOPLE, PLATFORMS, PLAYER_PERSPECTIVES, PULSE_GROUPS,
         PULSE_SOURCES, PULSES, RELEASE_DATES, REVIEWS, THEMES, TITLES
     }
-    public enum Operator{
-        IDS, FIELDS, EXPAND, LIMIT, OFFSET, ORDER, SEARCH, SCROLL, FILTER
-    }
 
     /**
      * This method returns a JSONArray with the specified data requested,
@@ -88,76 +85,18 @@ public class APIWrapper {
         ));
     }
 
-    /**
-     *  querybuilder is an inner private class that builds the query for the request based on the
-     *  Map parameter args
-     *
-     *  @param args     Map containing the operator and the string ex: /games/
-     *
-     *  @param endpoint The endpoint for which the arguments should apply for
-     *                  ex: /games/
-     *
-     **/
-    private String queryBuilder(Endpoint endpoint, Map<Operator, String> args){
-
-        String ids, fields, expand, limit, offset, order, search, scroll, filter, query;
-        ids = fields = expand = limit = offset = order = search = scroll = filter = query = "";
-
-
-        Set<Operator> keySet = args.keySet();
-        for (Operator operator : keySet) {
-            switch (operator){
-                case IDS: ids = args.get(Operator.IDS).replaceAll(" ", "");
-                    break;
-                case FIELDS:  fields = "fields=" + args.get(Operator.FIELDS).replaceAll(" ", "");
-                    break;
-                case EXPAND: expand = "&expand=" + args.get(Operator.EXPAND).replaceAll(" ", "");
-                    break;
-                case LIMIT: limit = "&limit=" + args.get(Operator.LIMIT).replaceAll(" ", "");
-                    break;
-                case OFFSET: offset = "&offset=" + args.get(Operator.OFFSET).replaceAll(" ", "");
-                    break;
-                case ORDER: order = "&order=" + args.get(Operator.ORDER).replaceAll(" ", "");
-                    break;
-                case SEARCH: search = "?search=" + args.get(Operator.SEARCH).replaceAll(" ", "%20");
-                    break;
-                case SCROLL: scroll = "&scroll=" + args.get(Operator.SCROLL).replaceAll(" ", "");
-                    break;
-                case FILTER: filter += "&filter" + args.get(Operator.FILTER).replaceAll(" ", "");
-                    break;
-            }
-        }
-
-        query = endpoint.toString().toLowerCase();
-
-        query += "/" + ids + search;
-
-        if (!fields.isEmpty() && !search.isEmpty()){
-            query += "&" + fields;
-        }else if (!fields.isEmpty()){
-            query += "?" + fields;
-        }else{
-            query += "?fields=*";
-        }
-
-        query += filter + expand + order + limit + offset + scroll;
-
-        Log.d("Query", query);
-
-        return query;
-    }
 
     /**
      * Search the IGDB API for information
      *
      *
      * @param endpoint  Apply for which Endpoint to search in.
-     * @param args      Args are the arguments, Ex: search query, fields, order etc.
+     * @param parameters      Args are the arguments, Ex: search query, fields, order etc.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * **/
-    public void search(Endpoint endpoint, Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(endpoint, args), new onSuccessCallback() {
+    public void search(Endpoint endpoint, Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(endpoint), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
 
@@ -174,12 +113,12 @@ public class APIWrapper {
     /**
      * Games method returns a JSONArray containing the game information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters    The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]")
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void games(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.GAMES, args), new onSuccessCallback() {
+    public void games(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.GAMES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -195,12 +134,12 @@ public class APIWrapper {
     /**
      * Pulse method returns a JSONArray containing the pulse information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void pulses(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PULSES, args), new onSuccessCallback() {
+    public void pulses(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PULSES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -216,12 +155,12 @@ public class APIWrapper {
     /**
      * Characters method returns a JSONArray containing the character information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void characters(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.CHARACTERS, args), new onSuccessCallback() {
+    public void characters(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.CHARACTERS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -237,12 +176,12 @@ public class APIWrapper {
     /**
      * Collections method returns a JSONArray containing the collection information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void collections(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.COLLECTIONS, args), new onSuccessCallback() {
+    public void collections(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.COLLECTIONS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -258,12 +197,12 @@ public class APIWrapper {
     /**
      * Companies method returns a JSONArray containing the company information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void companies(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.COMPANIES, args), new onSuccessCallback() {
+    public void companies(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.COMPANIES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -279,12 +218,12 @@ public class APIWrapper {
     /**
      * Franchises method returns a JSONArray containing the franchise information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void franchises(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.FRANCHISES, args), new onSuccessCallback() {
+    public void franchises(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.FRANCHISES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -300,12 +239,12 @@ public class APIWrapper {
     /**
      * Feed method returns a JSONArray containing the feed information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void feeds(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.FEEDS, args), new onSuccessCallback() {
+    public void feeds(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.FEEDS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -321,12 +260,12 @@ public class APIWrapper {
     /**
      * Pages method returns a JSONArray containing the page information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void pages(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PAGES, args), new onSuccessCallback() {
+    public void pages(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PAGES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -342,12 +281,12 @@ public class APIWrapper {
     /**
      * GameEngine method returns a JSONArray containing the game engine information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result.
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void gameEngines(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.GAME_ENGINES, args), new onSuccessCallback() {
+    public void gameEngines(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.GAME_ENGINES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -363,12 +302,12 @@ public class APIWrapper {
     /**
      * GameModes method returns a JSONArray containing the game mode information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void gameModes(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.GAME_MODES, args), new onSuccessCallback() {
+    public void gameModes(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.GAME_MODES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -384,12 +323,12 @@ public class APIWrapper {
     /**
      * Genres method returns a JSONArray containing the genre information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void genres(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.GENRES, args), new onSuccessCallback() {
+    public void genres(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.GENRES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -405,12 +344,12 @@ public class APIWrapper {
     /**
      * Keywords method returns a JSONArray containing the keyword information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void keywords(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.KEYWORDS, args), new onSuccessCallback() {
+    public void keywords(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.KEYWORDS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -426,12 +365,12 @@ public class APIWrapper {
     /**
      * People method returns a JSONArray containing the people information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void people(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PEOPLE, args), new onSuccessCallback() {
+    public void people(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PEOPLE), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -447,12 +386,12 @@ public class APIWrapper {
     /**
      * Platforms method returns a JSONArray containing the platform information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void platforms(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PLATFORMS, args), new onSuccessCallback() {
+    public void platforms(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PLATFORMS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -469,12 +408,12 @@ public class APIWrapper {
      * PlayerPerspectives method returns a JSONArray containing the player perspective information
      * requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void playerPerspectives(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PLAYER_PERSPECTIVES, args), new onSuccessCallback() {
+    public void playerPerspectives(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PLAYER_PERSPECTIVES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -490,12 +429,12 @@ public class APIWrapper {
     /**
      * ReleaseDates method returns a JSONArray containing the release date information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void releaseDates(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.RELEASE_DATES, args), new onSuccessCallback() {
+    public void releaseDates(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.RELEASE_DATES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -511,12 +450,12 @@ public class APIWrapper {
     /**
      * PulseGroups method returns a JSONArray containing the pulse group information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result, Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void pulseGroups(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PULSE_GROUPS, args), new onSuccessCallback() {
+    public void pulseGroups(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PULSE_GROUPS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -532,12 +471,12 @@ public class APIWrapper {
     /**
      * PulseSources method returns a JSONArray containing the pulse source information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result,  Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void pulseSources(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.PULSE_SOURCES, args), new onSuccessCallback() {
+    public void pulseSources(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.PULSE_SOURCES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -553,12 +492,12 @@ public class APIWrapper {
     /**
      * Themes method returns a JSONArray containing the theme information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result,  Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void themes(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.THEMES, args), new onSuccessCallback() {
+    public void themes(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.THEMES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -574,12 +513,12 @@ public class APIWrapper {
     /**
      * Reviews method returns a JSONArray containing the review information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result,  Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void reviews(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.REVIEWS, args), new onSuccessCallback() {
+    public void reviews(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.REVIEWS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -595,12 +534,12 @@ public class APIWrapper {
     /**
      * Titles method returns a JSONArray containing the title information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result,  Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void titles(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.TITLES, args), new onSuccessCallback() {
+    public void titles(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.TITLES), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);
@@ -616,12 +555,12 @@ public class APIWrapper {
     /**
      * Credits method returns a JSONArray containing the credit information requested.
      *
-     * @param args      The arguments added to specify the result, Ex: map<FIELDS, "id,name">
+     * @param parameters      The arguments added to specify the result,  Ex parameters.addFilter("[cover][exists]").
      * @param callback  Callback which gets activated as soon as the JSONArray is returned from the
      *                  API.
      * */
-    public void credits(Map<Operator, String> args, final onSuccessCallback callback){
-        getJSONArray(queryBuilder(Endpoint.CREDITS, args), new onSuccessCallback() {
+    public void credits(Parameters parameters, final onSuccessCallback callback){
+        getJSONArray(parameters.buildQuery(Endpoint.CREDITS), new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 callback.onSuccess(result);

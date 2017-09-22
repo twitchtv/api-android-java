@@ -2,10 +2,12 @@ package com.igdb.api_android_java.test;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.widget.ArrayAdapter;
 
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,11 +43,11 @@ public class PulsesTest {
     @Test
     public void testSinglePulse() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "24000");
+        Parameters parameters = new Parameters()
+                .addIds("24000");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulses(args, new onSuccessCallback() {
+        wrapper.pulses(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -71,11 +73,11 @@ public class PulsesTest {
     @Test
     public void testMultiplePulse() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "25040,25047,25000");
+        Parameters parameters = new Parameters()
+                .addIds("25040,25047,25000");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulses(args, new onSuccessCallback() {
+        wrapper.pulses(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -106,11 +108,11 @@ public class PulsesTest {
     @Test
     public void testLimit() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "25040,25047,25000");
+        Parameters parameters = new Parameters()
+                .addIds("25040,25047,25000");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulses(args, new onSuccessCallback() {
+        wrapper.pulses(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

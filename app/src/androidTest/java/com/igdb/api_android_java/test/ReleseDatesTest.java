@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class ReleseDatesTest {
     @Test
     public void testSingleReleaseDate() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "86653");
+        Parameters parameters = new Parameters()
+                .addIds("86653");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class ReleseDatesTest {
     @Test
     public void testMultipleReleaseDates() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "86660,86663,15683");
+        Parameters parameters = new Parameters()
+                .addIds("86660,86663,15683");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -105,13 +106,13 @@ public class ReleseDatesTest {
     @Test
     public void testSingleFiltersReleaseDates() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.FILTER, "[platform][eq]=48");
-        args.put(APIWrapper.Operator.FIELDS, "game");
-        args.put(APIWrapper.Operator.ORDER, "date:asc");
+        Parameters parameters = new Parameters()
+                .addFilter("[platform][eq]=48")
+                .addFields("game")
+                .addOrder("date:asc");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -138,21 +139,21 @@ public class ReleseDatesTest {
     @Test
     public void testMultipleFiltersReleaseDates() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.FILTER, "[platform][eq]=48");
-        args.put(APIWrapper.Operator.FILTER, "[date][gt]=1501586921000");
-        args.put(APIWrapper.Operator.FIELDS, "game");
-        args.put(APIWrapper.Operator.ORDER, "date:asc");
+        Parameters parameters = new Parameters()
+                .addFilter("[platform][eq]=48")
+                .addFilter("[date][gt]=1501586921000")
+                .addFields("game")
+                .addOrder("date:asc");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
                     lock.countDown();
                     JSONObject object = result.getJSONObject(0);
                     int testId = object.getInt("id");
-                    assertEquals(100998, testId);
+                    assertEquals(99334, testId);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -172,19 +173,18 @@ public class ReleseDatesTest {
     @Test
     public void testSingleExpander() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "86653");
-        args.put(APIWrapper.Operator.EXPAND, "game");
+        Parameters parameters = new Parameters()
+                .addIds("86653")
+                .addFields("game");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
                     lock.countDown();
                     JSONObject object = result.getJSONObject(0);
-                    JSONObject game = object.getJSONObject("game");
-                    int testId = game.getInt("id");
+                    int testId = object.getInt("game");
                     assertEquals(38722, testId);
 
                 } catch (JSONException e) {
@@ -205,12 +205,12 @@ public class ReleseDatesTest {
     @Test
     public void testMultipleExpander() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "86653");
-        args.put(APIWrapper.Operator.EXPAND, "game,platform");
+        Parameters parameters = new Parameters()
+                .addIds("86653")
+                .addExpand("game,platform");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.releaseDates(args, new onSuccessCallback() {
+        wrapper.releaseDates(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

@@ -6,12 +6,14 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 
+import java.security.PrivilegedAction;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -40,11 +42,11 @@ public class GameEnginesTest {
     @Test
     public void testSingleGameEngines() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "67");
+        Parameters parameters = new Parameters()
+                .addIds("67");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.gameEngines(args, new onSuccessCallback() {
+        wrapper.gameEngines(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +72,11 @@ public class GameEnginesTest {
     @Test
     public void testMultipleGameEngines() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "367,363,359");
+        Parameters parameters = new Parameters()
+                .addIds("367,363,359");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.gameEngines(args, new onSuccessCallback() {
+        wrapper.gameEngines(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

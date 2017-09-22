@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class KeywordsTest {
     @Test
     public void testSingleKeywords() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1083");
+        Parameters parameters = new Parameters()
+                .addIds("1083");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.keywords(args, new onSuccessCallback() {
+        wrapper.keywords(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class KeywordsTest {
     @Test
     public void testMultipleKeywords() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "1086,1090,193");
+        Parameters parameters = new Parameters()
+                .addIds("1086,1090,193");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.keywords(args, new onSuccessCallback() {
+        wrapper.keywords(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

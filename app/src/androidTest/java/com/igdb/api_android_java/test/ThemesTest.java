@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class ThemesTest {
     @Test
     public void testSingleThemes() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "34");
+        Parameters parameters = new Parameters()
+                .addIds("34");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.themes(args, new onSuccessCallback() {
+        wrapper.themes(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class ThemesTest {
     @Test
     public void testMultipleThemes() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "22,23,28");
+        Parameters parameters = new Parameters()
+                .addIds("22,23,28");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.themes(args, new onSuccessCallback() {
+        wrapper.themes(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

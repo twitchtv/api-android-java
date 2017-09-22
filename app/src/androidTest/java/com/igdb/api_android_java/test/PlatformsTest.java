@@ -6,12 +6,14 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 
+import java.security.PrivilegedAction;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
@@ -40,11 +42,11 @@ public class PlatformsTest {
     @Test
     public void testSinglePlatforms() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "11");
+        Parameters parameters = new Parameters()
+                .addIds("11");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.platforms(args, new onSuccessCallback() {
+        wrapper.platforms(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +72,11 @@ public class PlatformsTest {
     @Test
     public void testMultiplePeople() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "13,5,3");
+        Parameters parameters = new Parameters()
+                .addIds("13,5,3");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.platforms(args, new onSuccessCallback() {
+        wrapper.platforms(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -105,12 +107,12 @@ public class PlatformsTest {
     @Test
     public void testPeopleMultiAndSingle() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.SEARCH, "xbox one");
-        args.put(APIWrapper.Operator.FIELDS, "name");
+        Parameters parameters = new Parameters()
+                .addSearch("xbox one")
+                .addFields("name");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.search(APIWrapper.Endpoint.PLATFORMS, args, new onSuccessCallback() {
+        wrapper.search(APIWrapper.Endpoint.PLATFORMS, parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +41,11 @@ public class PulseSourcesTest {
     @Test
     public void testSinglePulseSources() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "2");
+        Parameters parameters = new Parameters()
+                .addIds("2");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulseSources(args, new onSuccessCallback() {
+        wrapper.pulseSources(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -70,11 +71,11 @@ public class PulseSourcesTest {
     @Test
     public void testMultiplePulseSources() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "8,9,10");
+        Parameters parameters = new Parameters()
+                .addIds("8,9,10");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulseSources(args, new onSuccessCallback() {
+        wrapper.pulseSources(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

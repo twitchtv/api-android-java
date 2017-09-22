@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,11 +43,11 @@ public class CompaniesTest {
     @Test
     public void testSingleCompany() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "2238");
+        Parameters parameters = new Parameters()
+                .addIds("2238");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.companies(args, new onSuccessCallback() {
+        wrapper.companies(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -72,11 +73,11 @@ public class CompaniesTest {
     @Test
     public void testMultipleCompany() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "2239,2240,2242");
+        Parameters parameters = new Parameters()
+                .addIds("2239,2240,2242");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.characters(args, new onSuccessCallback() {
+        wrapper.characters(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -107,12 +108,12 @@ public class CompaniesTest {
     @Test
     public void testGameSearchMultiAndSingle() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.SEARCH, "ea");
-        args.put(APIWrapper.Operator.FIELDS, "name");
+        Parameters parameters = new Parameters()
+                .addSearch("ea")
+                .addFields("name");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.search(APIWrapper.Endpoint.COMPANIES, args, new onSuccessCallback() {
+        wrapper.search(APIWrapper.Endpoint.COMPANIES, parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

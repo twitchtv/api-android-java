@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
 import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,11 +43,11 @@ public class CharactersTest {
     @Test
     public void testSingleCharacter() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator, String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "8529");
+        Parameters parameters = new Parameters()
+                .addIds("8529");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.characters(args, new onSuccessCallback() {
+        wrapper.characters(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -72,11 +73,11 @@ public class CharactersTest {
     @Test
     public void testMultipleCharacters() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.IDS, "8530,8531,8533");
+        Parameters parameters = new Parameters()
+                .addIds("8530,8531,8533");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.characters(args, new onSuccessCallback() {
+        wrapper.characters(parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -110,12 +111,12 @@ public class CharactersTest {
     @Test
     public void testGameSearchMultiAndSingle() throws InterruptedException {
         setUp();
-        Map<APIWrapper.Operator,String> args = new HashMap<>();
-        args.put(APIWrapper.Operator.SEARCH, "geralt of rivia");
-        args.put(APIWrapper.Operator.FIELDS, "name");
+        Parameters parameters = new Parameters()
+                .addSearch("geralt of rivia")
+                .addFields("name");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.search(APIWrapper.Endpoint.CHARACTERS, args, new onSuccessCallback() {
+        wrapper.search(APIWrapper.Endpoint.CHARACTERS, parameters, new onSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
