@@ -51,11 +51,11 @@ __Example__
 * Requesting games from API
 ``` java
 APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.FIELDS,“*”);
-args.put(APIWrapper.Operator.ORDER, "published_at:desc");
-
-wrapper.games(args, new onSuccessCallback(){
+Parameters params = new Parameters()
+	.addFields("*")
+	.addorder("published_at:desc");
+	
+wrapper.games(params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -76,12 +76,12 @@ The rest of the endpoints work similarly to the Games endpoint except for two ca
 * Requesting search from the API
 ``` java
 APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.SEARCH, "SeachQuery");
-args.put(APIWrapper.Operator.FIELDS,“*”);
-args.put(APIWrapper.Operator.ORDER, "published_at:desc");
+Parameters params = new Parameters()
+	.addSearch("searchQuery")
+	.addFields("*")
+	.addOrder("published_at:desc");
 
-wrapper.search(APIWrapper.Endpoint.GAMES, args, new onSuccessCallback(){
+wrapper.search(APIWrapper.Endpoint.GAMES, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -102,12 +102,12 @@ The search endpoint need an extra parameter, Endpoint, as you can search any end
 * Filtering a request result
 ``` java
 APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.FIELDS,“*”);
-args.put(APIWrapper.Operator.FILTER, "[themes][not_in]=42");
-args.put(APIWrapper.Operator.ORDER, "published_at:desc");
+Parameters params = new Parameters()
+	.addFields("*")
+	.addFilter("[themes][not_in]=42")
+	.addOrder("published_at:desc");
 
-wrapper.games(args, new onSuccessCallback(){
+wrapper.games(params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -138,12 +138,12 @@ APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
 /*
 Search for up to two Atari platforms and return their names
 */
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.SEARCH,“Atari”);
-args.put(APIWrapper.Operator.FIELDS,“name”);
-args.put(APIWrapper.Operator.LIMIT,“2”);
+Parameters params = new Parameters()
+	.addSearch("Atari")
+	.addFields("name")
+	.addLimit("2");
 
-wrapper.search(APIWrapper.Endpoint.PLATFORMS, args, new onSuccessCallback(){
+wrapper.search(APIWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 2 Atari platforms
@@ -162,16 +162,16 @@ https://api-2445582011268.apicast.io/platforms/?search=Atari&fields=name&limit=2
 Search for up to five Zelda games with release dates between 1 Jan and
 31 Dec 2011, sorted by release date in descending order.
 */
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.SEARCH,“Zelda”);
-args.put(APIWrapper.Operator.FIELDS,“name,release_dates.date,rating,hypes,cover”);
-args.put(APIWrapper.Operator.FILTER,“[release_dates.date][gt]=2010-12-31”);
-args.put(APIWrapper.Operator.FILTER,“[release_dates.date][lt]=2012-01-01”);
-args.put(APIWrapper.Operator.LIMIT,“2”);
-args.put(APIWrapper.Operator.OFFSET,“0”);
-args.put(APIWrapper.Operator.ORDER,“release_dates.date:desc”);
+Parameters params = new Parameters()
+	.addSearch("Zelda")
+	.addFields(“name,release_dates.date,rating,hypes,cover”)
+	.addFilter("[release_dates.date][gt]=2010-12-31”)
+	.addFilter(“[release_dates.date][lt]=2012-01-01”)
+	.addLimit("2")
+	.addOffset("0")
+	.addOrder(“release_dates.date:desc”);
 
-wrapper.search(APIWrapper.Endpoint.PLATFORMS, args, new onSuccessCallback(){
+wrapper.search(APIWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 5 Zelda games
@@ -189,11 +189,11 @@ https://api-2445582011268.apicast.io/games/?search=Zelda&fields=name,release_dat
 /*
 Search for two specific games by their IDs
 */
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.IDS,“18472,18228”);
-args.put(APIWrapper.Operator.FIELDS,“name,cover”);
+Parameters params = new Parameters()
+	.addIds(“18472,18228”)
+	.addFields(“name,cover”);
 
-wrapper.games(args, new onSuccessCallback(){
+wrapper.games(params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 2 games
@@ -212,15 +212,15 @@ https://api-2445582011268.apicast.io/games/18472,18228?fields=name,cover */
 Search for companies with 'rockstar' in their name. Return up to five
 results sorted by name in descending order
 */
-Map<APIWrapper.Operator, String> args = new HashMap<>();
-args.put(APIWrapper.Operator.SEARCH,“rockstar”);
-args.put(APIWrapper.Operator.FIELDS,“name,logo”);
-args.put(APIWrapper.Operator.FILTER,“[name][in]=rockstar”);
-args.put(APIWrapper.Operator.LIMIT,“5”);
-args.put(APIWrapper.Operator.OFFSET,“0”);
-args.put(APIWrapper.Operator.ORDER,“name:desc”);
+Parameters params = new Parameters()
+	.addSearch("rockstar")
+	.addFields(“name,logo”)
+	.addFilter(“[name][in]=rockstar”)
+	.addLimit("5")
+	.addOffset("0")
+	.addOrder(“name:desc”);
 
-wrapper.search(APIWrapper.Endpoint.COMPANIES, args, new onSuccessCallback(){
+wrapper.search(APIWrapper.Endpoint.COMPANIES, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing five companies with rockstar in their name
