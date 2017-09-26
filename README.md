@@ -42,10 +42,10 @@ APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
 
 ## Usage
 All API endpoints are available as methods in the APIWrapper object. Each method has the following signature:
-### wrapper.endpoint(Map<Operator, String>)
+### wrapper.endpoint(Parameters, onSuccessCallback)
 __Arguments__
-* Operator - An object specifying an operation, ex. expander, filter, ordering etc. These Operations can be found in the API documentation under References: (https://igdb.github.io/api/references/)
-* String - The String is the accompaying data for the Operator, ex. game ids "1,2,3,4,5" OR fields "id,name,rating"
+* Parameters - An object specifying the operations to be performed, ex. expander, filter, ordering etc. These Operations can be found in the API documentation under References: (https://igdb.github.io/api/references/)
+* onSuccessCallback - The callback is used to return to the previous method once the wrapper has retrieved the desired data from the API.
 
 __Example__ 
 * Requesting games from API
