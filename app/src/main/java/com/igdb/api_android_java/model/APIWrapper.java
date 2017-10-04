@@ -85,6 +85,46 @@ public class APIWrapper {
         ));
     }
 
+    /**
+     * This method returns a JSONArray with the specified data requested,
+     * with this method you can request any kind of data from the IGDB API using custom urls.
+     *
+     * @param url               The url stands for the query, except for the standard 3Scale url,
+     *                          where the requested data is specified.
+     * @param customHeaders     Add custom headers
+     * @param callback          The callback return the response from the server in the form of a JSONArray
+     *
+     *
+     **/
+    public void getJSONArray(String url, final Map<String, String> customHeaders, final onSuccessCallback callback){
+        String uri = Uri.parse(API_URL + url).buildUpon().build().toString();
+
+        JsonArrayRequest request = new JsonArrayRequest(uri, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onError(error);
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = customHeaders;
+                return headers;
+            }
+        };
+        requestQueue.add(request);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+    }
+
 
     /**
      * Search the IGDB API for information
