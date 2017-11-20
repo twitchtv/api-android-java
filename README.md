@@ -25,7 +25,7 @@ allprojects {
   Step 2. Add the dependency
 ``` Gradle
 dependencies {
-	compile 'com.github.igdb:api-android-java:master-SNAPSHOT'
+	compile 'com.github.igdb:api-android-java:1.0'
 }
 ```
   Step 3. Add internet permissions in the manifest
