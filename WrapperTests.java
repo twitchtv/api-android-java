@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.android.volley.VolleyError;
 import com.igdb.api_android_java.callback.onSuccessCallback;
-import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.wrapper.APIWrapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

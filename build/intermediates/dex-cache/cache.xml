@@ -3,12 +3,273 @@
 
     <item
         is-multidex="false"
-        jar="/Users/captainawesome/Documents/GitHub/api-android-java/app/build/intermediates/bundles/debug/classes.jar"
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\org\jetbrains\annotations\13.0\annotations-13.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="26.0.1"
-        sha1="9d6f4fa01d37ef58ff66ddccecc40c5232b9379d">
-        <dex dex="/Users/captainawesome/Documents/GitHub/api-android-java/app/build/intermediates/pre-dexed/androidTest/debug/classes_6e695e39e6c0083bc28dcf046c64f28ba57626ce.jar" />
+        revision="26.0.2"
+        sha1="919f0dfe192fb4e063e7dacadee7f8bb9a2672a9">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\annotations-13.0_1a1ecf57ad78f2133cd33f7be09f61b9db498cc9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.0.0\a2d487452376193fc8c103dd2b9bd5f2b1b44563\common-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\common-1.0.0_2a71ebb4ccfb7cd61f37bcb7e493c2feb708c214.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\javax.inject-1_a9451b0e0549548515b5a4e76e1e2f0c5a2185cd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\2bb58c53fc3fa83aec4aa3c140206f807ddefd55\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_f7e9588e9328dc3a794cb631f1e2ab945db6aeab.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Documents\GitHub\api-android-java\app\build\intermediates\bundles\debug\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6d434d8c1172b8b639b3d729d2380d375a687585">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_0cdafb1bd4d6ad9637ee9423c130543109a78399.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\acd553031640931734b60b9b6a307a717bbb2d8e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a6295621aab3a37ea2500e9e1a2829175313372c">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_2c49ec286fe94f0a20c85753ffc788b9e96f9f83.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.0.0\e414a4cb28434e25c4f6aa71426eb20cf4874ae9\common-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\common-1.0.0_08776e516c4714373c4ee00769bcc93db23ebb71.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-core-1.3_ed5b1c835dc529f629df2876fd8dd41750cf27bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\1dc351714e46a94b52aa426d7ed5793d4806dfa4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_cc8a152024d04c56bd59c6d9847b632f77a43e85.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\e02172a0d5f40af36ea0b06e965e26329e58ebb7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fdffea03a90c6b623dc5b5b10fe067cfd3048715">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_bdac39246a965bacbbe70177cbe2b0c4e47f2925.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-integration\1.3\5de0c73fef18917cd85d0ab70bb23818685e4dfd\hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-integration-1.3_601ad5596d968f3e1471999825d9d77d23a6a4c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\b3665af62b3212e5919b308731db1fa33e76973f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_906e3080abcbc1e6e907e9018c8dfd51f694e306.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\20a99fa9e1282221bf1c11c1e6f1c28c43cc5f64\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_eefebc1db0a0d477c60228bfb0cfe3120027b8f6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.1.0\814258103cf26a15fcc26ecce35f5b7d24b73f8\support-annotations-26.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\support-annotations-26.1.0_80178704f7a1cf772ca79e66b06712a0ddfceeb2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\9612d0180c511281bcc95ec6fb255f3a16ba4c1f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_eedffa1baa9b608b8b8b40dae6bd040fc4bd75dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\1c1ebb21663f7c8afcc0f3c54a56193b7f36958a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_953f1fcac1f8cbfc5072ad1346c61275c8c0156a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\com.squareup\javawriter\2.1.1\67ff45d9ae02e583d0f9b3432a5ebbe05c30c966\javawriter-2.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\javawriter-2.1.1_3815a6f90c49be364988fa125bbdbf51446bd7d5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\94ffe3a8c601b5191af00198754ba6cbf383f9be\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_3f06188dad09938506920c097b6b014f51ede261.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\eae4496ce79c0a8560cd26bdf4c01452b858720b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b0cc52f82a38613739bfded911ca385b75ff504f">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_13528f39aceb67295988fa0e275300daf5060bd5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.2.21\d64187eb2d9d1521be3421aa8c6774a8625cdde8\kotlin-stdlib-1.2.21.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d64187eb2d9d1521be3421aa8c6774a8625cdde8">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\kotlin-stdlib-1.2.21_0889c805de7bf97f1c3ac11d7cd92d4e567468bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\34b14b9cf31364092c17e49937da97faed8af14d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_9c131d737e11d16e798e8f458742a1ba37a9ead9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\51a61b3ff23c9bf87c8bbee4ade6b4cf6c84586f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_b12794fe9e7ac5c053645d045f85302b37753464.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\8c1384bf8881d46066725f05e3b5b9cb97ee1526\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f42cd459be08d98d05abb5f5361d057726e8f126">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_7d840d8cdd80131be67061b90b0fb434790141fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\net\sf\kxml\kxml2\2.3.0\kxml2-2.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ccbc77a5fd907ef863c29f3596c6f54ffa4e9442">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\kxml2-2.3.0_bf9411c82f3f7ced45d11ae31268a69ee59bd6dc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\jsr305-2.0.1_36e8167e24c7d1724e9b0e02ae2a5eaad0839650.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-jre7\1.2.21\3beb08c67673033183c8652572680587876e64b5\kotlin-stdlib-jre7-1.2.21.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3beb08c67673033183c8652572680587876e64b5">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\kotlin-stdlib-jre7-1.2.21_c9d40226f7bc8e0246d071b94d48eb0cbfe8604d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\0e8fde0d0c8821afaa219c170ca8b4a8707680b8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_0250e0f700849deb56373111fd15b2c724af5fe3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\junit-4.12_5e1cad12b1f0357772b249fa4f2d7f28c6f37c20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-library\1.3\4785a3c21320980282f9f33d0d1264a69040538f\hamcrest-library-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-library-1.3_606356d4cd68070294f5e0d72c178b385f5284fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Filip\.android\build-cache\54dd1abeb7037bfbf3da0dadc63291ed14ac68bc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Documents\GitHub\api-android-java\app\build\intermediates\pre-dexed\androidTest\debug\classes_ce1d9e0077f764d08aa99bb9d553d8b4b39476ae.jar" />
     </item>
 
 </items>

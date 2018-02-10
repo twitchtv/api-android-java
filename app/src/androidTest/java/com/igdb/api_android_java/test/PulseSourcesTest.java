@@ -4,17 +4,16 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 
 import com.android.volley.VolleyError;
-import com.igdb.api_android_java.callback.onSuccessCallback;
-import com.igdb.api_android_java.model.APIWrapper;
-import com.igdb.api_android_java.model.Parameters;
+import com.igdb.api_android_java.callback.OnSuccessCallback;
+import com.igdb.api_android_java.wrapper.IGDBWrapper;
+import com.igdb.api_android_java.wrapper.Parameters;
+import com.igdb.api_android_java.wrapper.Version;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -28,13 +27,13 @@ import static junit.framework.Assert.fail;
 public class PulseSourcesTest {
 
     private Context context;
-    private APIWrapper wrapper;
+    private IGDBWrapper wrapper;
 
 
     public void setUp() throws InterruptedException {
         context = InstrumentationRegistry.getContext();
         String key = System.getProperty("API_KEY");
-        wrapper = new APIWrapper(context, key);
+        wrapper = new IGDBWrapper(context, key, Version.PRO, true);
 
     }
 
@@ -45,7 +44,7 @@ public class PulseSourcesTest {
                 .addIds("2");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulseSources(parameters, new onSuccessCallback() {
+        wrapper.pulseSources(parameters, new OnSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {
@@ -75,7 +74,7 @@ public class PulseSourcesTest {
                 .addIds("8,9,10");
 
         final CountDownLatch lock = new CountDownLatch(1);
-        wrapper.pulseSources(parameters, new onSuccessCallback() {
+        wrapper.pulseSources(parameters, new OnSuccessCallback() {
             @Override
             public void onSuccess(JSONArray result) {
                 try {

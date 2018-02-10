@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.android.volley:volley-1.0.0">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/e845eabcd430452be4e5601a63dea90cdd7ff53b/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/e845eabcd430452be4e5601a63dea90cdd7ff53b/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/34b14b9cf31364092c17e49937da97faed8af14d/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/34b14b9cf31364092c17e49937da97faed8af14d/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
