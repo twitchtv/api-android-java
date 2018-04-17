@@ -52,7 +52,7 @@ __Example__
 APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
 Parameters params = new Parameters()
 	.addFields("*")
-	.addorder("published_at:desc");
+	.addOrder("published_at:desc");
 	
 wrapper.games(params, new onSuccessCallback(){
 	@Override
