@@ -16,16 +16,16 @@ More info here:
   Step 1. Add this in your root build.gradle at the end of the repositories:
 ```Gradle
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+    repositories {
+    ...
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
   Step 2. Add the dependency
 ``` Gradle
 dependencies {
-	compile 'com.github.igdb:api-android-java:1.1'
+    implementation 'com.github.igdb:api-android-java:1.1'
 }
 ```
   Step 3. Add internet permissions in the manifest
