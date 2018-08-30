@@ -25,7 +25,7 @@ allprojects {
   Step 2. Add the dependency
 ``` Gradle
 dependencies {
-    implementation 'com.github.igdb:api-android-java:1.2'
+    implementation 'com.github.igdb:api-android-java:1.3'
 }
 ```
   Step 3. Add internet permissions in the manifest
@@ -34,13 +34,13 @@ dependencies {
 ```
 
 ## Using your API key
-* Create a new APIWrapper Object by passing you 3Scale key
+* Create a new IGDBWrapper Object by passing you 3Scale key
 ``` java
-APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
+IGDBWrapper wrapper = new IGDBWrapper(context, "YOUR_API_KEY");
 ```
 
 ## Usage
-All API endpoints are available as methods in the APIWrapper object. Each method has the following signature:
+All API endpoints are available as methods in the IGDBWrapper object. Each method has the following signature:
 ### wrapper.endpoint(Parameters, onSuccessCallback)
 __Arguments__
 * Parameters - An object specifying the operations to be performed, ex. expander, filter, ordering etc. These Operations can be found in the API documentation under References: (https://igdb.github.io/api/references/)
@@ -49,7 +49,7 @@ __Arguments__
 __Example__ 
 * Requesting games from API
 ``` java
-APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
+IGDBWrapper wrapper = new IGDBWrapper(context, "YOUR_API_KEY");
 Parameters params = new Parameters()
 	.addFields("*")
 	.addOrder("published_at:desc");
@@ -74,13 +74,13 @@ The rest of the endpoints work similarly to the Games endpoint except for two ca
 
 * Requesting search from the API
 ``` java
-APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
+IGDBWrapper wrapper = new IGDBWrapper(context, "YOUR_API_KEY");
 Parameters params = new Parameters()
 	.addSearch("searchQuery")
 	.addFields("*")
 	.addOrder("published_at:desc");
 
-wrapper.search(APIWrapper.Endpoint.GAMES, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.GAMES, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -100,7 +100,7 @@ The search endpoint need an extra parameter, Endpoint, as you can search any end
 
 * Filtering a request result
 ``` java
-APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
+IGDBWrapper wrapper = new IGDBWrapper(context, "YOUR_API_KEY");
 Parameters params = new Parameters()
 	.addFields("*")
 	.addFilter("[themes][not_in]=42")
@@ -132,7 +132,7 @@ The IGDB API documentation provides [details on search parameters](https://igdb.
 ## More examples
 ```java
 
-APIWrapper wrapper = new APIWrapper(context, "YOUR_API_KEY");
+IGDBWrapper wrapper = new IGDBWrapper(context, "YOUR_API_KEY");
 
 /*
 Search for up to two Atari platforms and return their names
@@ -142,7 +142,7 @@ Parameters params = new Parameters()
 	.addFields("name")
 	.addLimit("2");
 
-wrapper.search(APIWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 2 Atari platforms
@@ -170,7 +170,7 @@ Parameters params = new Parameters()
 	.addOffset("0")
 	.addOrder(“release_dates.date:desc”);
 
-wrapper.search(APIWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 5 Zelda games
@@ -219,7 +219,7 @@ Parameters params = new Parameters()
 	.addOffset("0")
 	.addOrder(“name:desc”);
 
-wrapper.search(APIWrapper.Endpoint.COMPANIES, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.COMPANIES, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing five companies with rockstar in their name
