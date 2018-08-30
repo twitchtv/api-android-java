@@ -266,7 +266,7 @@ public class IGDBWrapperTest {
     public void feeds() throws Exception {
         setUp();
         Parameters parameters = new Parameters()
-                .addIds("4011");
+                .addIds("273556");
 
         final CountDownLatch lock = new CountDownLatch(1);
         wrapper.feeds(parameters, new OnSuccessCallback() {
@@ -277,7 +277,7 @@ public class IGDBWrapperTest {
                     lock.countDown();
                     jo = result.getJSONObject(0);
                     String s = jo.getString("pulse");
-                    assertThat(s, is("24221"));
+                    assertThat(s, is("667496"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     fail();
