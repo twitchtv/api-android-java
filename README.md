@@ -155,7 +155,8 @@ wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 });
 
 /* The sent request will look like this:
-https://api-2445582011268.apicast.io/platforms/?search=Atari&fields=name&limit=2 */
+https://api-2445582011268.apicast.io/platforms/?search=Atari&fields=name&limit=2 
+*/
 
 /*
 Search for up to five Zelda games with release dates between 1 Jan and
@@ -163,14 +164,14 @@ Search for up to five Zelda games with release dates between 1 Jan and
 */
 Parameters params = new Parameters()
 	.addSearch("Zelda")
-	.addFields(“name,release_dates.date,rating,hypes,cover”)
-	.addFilter("[release_dates.date][gt]=2010-12-31”)
-	.addFilter(“[release_dates.date][lt]=2012-01-01”)
+	.addFields("name,release_dates.date,rating,hypes,cover")
+	.addFilter("[release_dates.date][gt]=2010-12-31")
+	.addFilter("[release_dates.date][lt]=2012-01-01")
 	.addLimit("2")
 	.addOffset("0")
-	.addOrder(“release_dates.date:desc”);
+	.addOrder("release_dates.date:desc");
 
-wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.GAMES, params, new onSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 5 Zelda games
@@ -183,14 +184,15 @@ wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 });
 
 /* The sent request will look like this:
-https://api-2445582011268.apicast.io/games/?search=Zelda&fields=name,release_dates.date,rating,hypes,cover&filter[release_dates.date][gt]=2010-12-31&filter[release_dates.date][lt]=2012-01-01&limit=5&order=release_dates.date:desc */
+https://api-2445582011268.apicast.io/games/?search=Zelda&fields=name,release_dates.date,rating,hypes,cover&filter[release_dates.date][gt]=2010-12-31&filter[release_dates.date][lt]=2012-01-01&limit=5&order=release_dates.date:desc 
+*/
 
 /*
 Search for two specific games by their IDs
 */
 Parameters params = new Parameters()
-	.addIds(“18472,18228”)
-	.addFields(“name,cover”);
+	.addIds("18472,18228")
+	.addFields("name,cover");
 
 wrapper.games(params, new onSuccessCallback(){
 	@Override
@@ -205,7 +207,8 @@ wrapper.games(params, new onSuccessCallback(){
 });
 
 /* The sent request will look like this:
-https://api-2445582011268.apicast.io/games/18472,18228?fields=name,cover */
+https://api-2445582011268.apicast.io/games/18472,18228?fields=name,cover 
+*/
 
 /*
 Search for companies with 'rockstar' in their name. Return up to five
@@ -213,8 +216,8 @@ results sorted by name in descending order
 */
 Parameters params = new Parameters()
 	.addSearch("rockstar")
-	.addFields(“name,logo”)
-	.addFilter(“[name][in]=rockstar”)
+	.addFields("name,logo")
+	.addFilter("[name][in]=rockstar")
 	.addLimit("5")
 	.addOffset("0")
 	.addOrder(“name:desc”);
@@ -232,4 +235,5 @@ wrapper.search(IGDBWrapper.Endpoint.COMPANIES, params, new onSuccessCallback(){
 });
 
 /* The sent request will look like this:
-https://api-2445582011268.apicast.io/companies/?search=rockstar&fields=name,logo&filter[name][in]=rockstar&limit=5&offset=0&order=name:desc */
+https://api-2445582011268.apicast.io/companies/?search=rockstar&fields=name,logo&filter[name][in]=rockstar&limit=5&offset=0&order=name:desc 
+*/
