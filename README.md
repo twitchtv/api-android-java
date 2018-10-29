@@ -168,7 +168,7 @@ Parameters params = new Parameters()
 	.addFilter("[release_dates.date][lt]=2012-01-01")
 	.addLimit("2")
 	.addOffset("0")
-	.addOrder(“release_dates.date:desc”);
+	.addOrder("release_dates.date:desc");
 
 wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
 	@Override
@@ -189,8 +189,8 @@ https://api-2445582011268.apicast.io/games/?search=Zelda&fields=name,release_dat
 Search for two specific games by their IDs
 */
 Parameters params = new Parameters()
-	.addIds(“18472,18228”)
-	.addFields(“name,cover”);
+	.addIds("18472,18228")
+	.addFields("name,cover");
 
 wrapper.games(params, new onSuccessCallback(){
 	@Override
@@ -213,11 +213,11 @@ results sorted by name in descending order
 */
 Parameters params = new Parameters()
 	.addSearch("rockstar")
-	.addFields(“name,logo”)
-	.addFilter(“[name][in]=rockstar”)
+	.addFields("name,logo")
+	.addFilter("[name][in]=rockstar")
 	.addLimit("5")
 	.addOffset("0")
-	.addOrder(“name:desc”);
+	.addOrder("name:desc");
 
 wrapper.search(IGDBWrapper.Endpoint.COMPANIES, params, new onSuccessCallback(){
 	@Override
