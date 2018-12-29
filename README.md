@@ -41,10 +41,10 @@ IGDBWrapper wrapper = new IGDBWrapper(context, "YOUR_API_KEY");
 
 ## Usage
 All API endpoints are available as methods in the IGDBWrapper object. Each method has the following signature:
-### wrapper.endpoint(Parameters, onSuccessCallback)
+### wrapper.endpoint(Parameters, OnSuccessCallback)
 __Arguments__
 * Parameters - An object specifying the operations to be performed, ex. expander, filter, ordering etc. These Operations can be found in the API documentation under References: (https://igdb.github.io/api/references/)
-* onSuccessCallback - The callback is used to return to the previous method once the wrapper has retrieved the desired data from the API.
+* OnSuccessCallback - The callback is used to return to the previous method once the wrapper has retrieved the desired data from the API.
 
 __Example__ 
 * Requesting games from API
@@ -54,7 +54,7 @@ Parameters params = new Parameters()
 	.addFields("*")
 	.addOrder("published_at:desc");
 	
-wrapper.games(params, new onSuccessCallback(){
+wrapper.games(params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -80,7 +80,7 @@ Parameters params = new Parameters()
 	.addFields("*")
 	.addOrder("published_at:desc");
 
-wrapper.search(IGDBWrapper.Endpoint.GAMES, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.GAMES, params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -106,7 +106,7 @@ Parameters params = new Parameters()
 	.addFilter("[themes][not_in]=42")
 	.addOrder("published_at:desc");
 
-wrapper.games(params, new onSuccessCallback(){
+wrapper.games(params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// Do something with resulting JSONArray
@@ -142,7 +142,7 @@ Parameters params = new Parameters()
 	.addFields("name")
 	.addLimit("2");
 
-wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.PLATFORMS, params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 2 Atari platforms
@@ -171,7 +171,7 @@ Parameters params = new Parameters()
 	.addOffset("0")
 	.addOrder("release_dates.date:desc");
 
-wrapper.search(IGDBWrapper.Endpoint.GAMES, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.GAMES, params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 5 Zelda games
@@ -194,7 +194,7 @@ Parameters params = new Parameters()
 	.addIds("18472,18228")
 	.addFields("name,cover");
 
-wrapper.games(params, new onSuccessCallback(){
+wrapper.games(params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing 2 games
@@ -222,7 +222,7 @@ Parameters params = new Parameters()
 	.addOffset("0")
 	.addOrder(“name:desc”);
 
-wrapper.search(IGDBWrapper.Endpoint.COMPANIES, params, new onSuccessCallback(){
+wrapper.search(IGDBWrapper.Endpoint.COMPANIES, params, new OnSuccessCallback(){
 	@Override
         public void onSuccess(JSONArray result) {
         	// JSONArray containing five companies with rockstar in their name
